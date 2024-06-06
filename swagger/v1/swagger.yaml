@@ -1,0 +1,45 @@
+---
+openapi: 3.0.1
+info:
+  title: API V1
+  version: v1
+paths:
+  "/contacts":
+    get:
+      summary: list contacts
+      responses:
+        '200':
+          description: successful
+    post:
+      summary: create contact
+      responses:
+        '200':
+          description: successful
+  "/contacts/{id}":
+    parameters:
+    - name: id
+      in: path
+      description: id
+      required: true
+      schema:
+        type: string
+    get:
+      summary: show contact
+      responses:
+        '200':
+          description: successful
+    patch:
+      summary: update contact
+      responses:
+        '200':
+          description: successful
+    put:
+      summary: update contact
+      responses:
+        '200':
+          description: successful
+    delete:
+      summary: delete contact
+      responses:
+        '200':
+          description: successful
