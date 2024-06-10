@@ -1,8 +1,10 @@
 class Contact < ApplicationRecord
    belongs_to :kind, optional:true
+   has_many :phones
+   accepts_nested_attributes_for :phones
    validates :email, presence: true, uniqueness: true, format: { with: URI::MailTo::EMAIL_REGEXP }
-
-    def birthdate_br
+/
+    #def birthdate_br
       I18n.l(self.birthdate) unless self.birthdate.blank?
     end
     def author
@@ -14,13 +16,17 @@ class Contact < ApplicationRecord
     end
     
     def as_json(options={})
-       super( 
-         root:true,
-         methods: [:author, :birthdate_br],
+       x = super(options 
+         #root:true,
+         #methods: [:author, :birthdate_br],
          #except: :kind_id,
          #include: { kind: { only: [:id, :description]}}
+
        )
-    end
+       x[:birthdate] = I18n.l(self.birthdate) unless self.birthdate.blank?
+       x
+    end 
+/
 end
 
 
