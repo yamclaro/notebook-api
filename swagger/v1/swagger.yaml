@@ -43,3 +43,42 @@ paths:
       responses:
         '200':
           description: successful
+  "/kinds":
+    get:
+      summary: list kinds
+      responses:
+        '200':
+          description: successful
+    post:
+      summary: create kind
+      responses:
+        '200':
+          description: successful
+  "/kinds/{id}":
+    parameters:
+    - name: id
+      in: path
+      description: id
+      required: true
+      schema:
+        type: string
+    get:
+      summary: show kind
+      responses:
+        '200':
+          description: successful
+    patch:
+      summary: update kind
+      responses:
+        '200':
+          description: successful
+    put:
+      summary: update kind
+      responses:
+        '200':
+          description: successful
+    delete:
+      summary: delete kind
+      responses:
+        '200':
+          description: successful
