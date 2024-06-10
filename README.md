@@ -37,3 +37,5 @@ Things you may want to cover:
 ##### https://medium.com/@clarkjohnson_85334/adding-swagger-docs-to-a-rails-6-api-using-rswag-a3e8bc577986
 
 #### https://medium.com/apis-you-wont-hate/generating-openapi-docs-for-ruby-on-rails-with-rswag-9205b010e463
+
+#### https://github.com/rswag/rswag

@@ -46,14 +46,31 @@ paths:
   "/kinds":
     get:
       summary: list kinds
+      tags:
+      - Kinds
       responses:
         '200':
           description: successful
     post:
-      summary: create kind
+      summary: create a kind
+      tags:
+      - Kinds
+      parameters: []
       responses:
-        '200':
-          description: successful
+        '201':
+          description: kind created
+        '422':
+          description: invalid request
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                description:
+                  type: string
+              required:
+              - description
   "/kinds/{id}":
     parameters:
     - name: id
@@ -64,21 +81,29 @@ paths:
         type: string
     get:
       summary: show kind
+      tags:
+      - Kinds
       responses:
         '200':
           description: successful
     patch:
       summary: update kind
+      tags:
+      - Kinds
       responses:
         '200':
           description: successful
     put:
       summary: update kind
+      tags:
+      - Kinds
       responses:
         '200':
           description: successful
     delete:
       summary: delete kind
+      tags:
+      - Kinds
       responses:
         '200':
           description: successful

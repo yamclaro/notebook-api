@@ -5,8 +5,8 @@ RSpec.describe 'kinds', type: :request do
   path '/kinds' do
 
     get('list kinds') do
+       tags 'Kinds'
       response(200, 'successful') do
-
         after do |example|
           example.metadata[:response][:content] = {
             'application/json' => {
@@ -18,16 +18,24 @@ RSpec.describe 'kinds', type: :request do
       end
     end
 
-    post('create kind') do
-      response(200, 'successful') do
+    post('create a kind') do
+      tags 'Kinds'
+      consumes 'application/json'
+      parameter name: :kind, in: :body, schema: {
+        type: :object,
+        properties: {
+          description: { type: :string },
+        },
+        required: [ 'description']
+      }
 
-        after do |example|
-          example.metadata[:response][:content] = {
-            'application/json' => {
-              example: JSON.parse(response.body, symbolize_names: true)
-            }
-          }
-        end
+      response '201', 'kind created' do
+        let(:kind) { { description: 'Corporativo'} }
+        run_test!
+      end
+
+      response '422', 'invalid request' do
+        let(:kind) { { description: 'Corporativo' } }
         run_test!
       end
     end
@@ -38,6 +46,7 @@ RSpec.describe 'kinds', type: :request do
     parameter name: 'id', in: :path, type: :string, description: 'id'
 
     get('show kind') do
+       tags 'Kinds'
       response(200, 'successful') do
         let(:id) { '123' }
 
@@ -53,6 +62,7 @@ RSpec.describe 'kinds', type: :request do
     end
 
     patch('update kind') do
+       tags 'Kinds'
       response(200, 'successful') do
         let(:id) { '123' }
 
@@ -68,6 +78,7 @@ RSpec.describe 'kinds', type: :request do
     end
 
     put('update kind') do
+       tags 'Kinds'
       response(200, 'successful') do
         let(:id) { '123' }
 
@@ -83,6 +94,7 @@ RSpec.describe 'kinds', type: :request do
     end
 
     delete('delete kind') do
+       tags 'Kinds'
       response(200, 'successful') do
         let(:id) { '123' }
 
