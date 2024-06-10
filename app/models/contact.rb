@@ -1,7 +1,11 @@
 class Contact < ApplicationRecord
    belongs_to :kind, optional:true
    has_many :phones
-   accepts_nested_attributes_for :phones
+   has_ony :adress
+
+   accepts_nested_attributes_for :adress, allow_destroy: true
+   accepts_nested_attributes_for :phones, allow_destroy: true
+
    validates :email, presence: true, uniqueness: true, format: { with: URI::MailTo::EMAIL_REGEXP }
 /
     #def birthdate_br
