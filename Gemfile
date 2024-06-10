@@ -17,3 +17,4 @@ end
 
 group :development do
 end
+gem "rails-i18n", "~> 7.0"
