@@ -8,6 +8,9 @@ gem "tzinfo-data", platforms: %i[ windows jruby ]
 gem "bootsnap", require: false
 gem 'rswag'
 gem 'rack-cors', require: 'rack/cors'
+gem "rails-i18n", "~> 7.0"
+#gem "jwt"
+
 
 group :development, :test do
   gem "debug", platforms: %i[ mri windows ]
@@ -18,4 +21,3 @@ end
 
 group :development do
 end
-gem "rails-i18n", "~> 7.0"
