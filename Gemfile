@@ -10,6 +10,7 @@ gem 'rswag'
 gem 'rack-cors', require: 'rack/cors'
 gem "rails-i18n", "~> 7.0"
 #gem "jwt"
+gem 'devise_token_auth'
 
 
 group :development, :test do
@@ -21,3 +22,4 @@ end
 
 group :development do
 end
+gem "devise-i18n", "~> 1.12"
