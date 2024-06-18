@@ -2,6 +2,7 @@ class Contact < ApplicationRecord
    belongs_to :kind, optional:true
    has_many :phones, dependent: :destroy  
    has_one :adress, required: false, dependent: :destroy  
+   has_one_attached :imagem
 
    accepts_nested_attributes_for :adress, allow_destroy: true
    accepts_nested_attributes_for :phones, allow_destroy: true

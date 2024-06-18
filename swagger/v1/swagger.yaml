@@ -17,7 +17,7 @@ paths:
           description: invalid request
       requestBody:
         content:
-          application/json:
+          multipart/form-data:
             schema:
               type: object
               properties:
@@ -28,6 +28,8 @@ paths:
                 birthdate:
                   type: string
                   format: date
+                imagem:
+                  type: file
               required:
               - name
               - email
@@ -79,7 +81,7 @@ paths:
           description: contact not found
       requestBody:
         content:
-          application/json:
+          multipart/form-data:
             schema:
               type: object
               properties:
@@ -90,6 +92,8 @@ paths:
                 birthdate:
                   type: string
                   format: date
+                imagem:
+                  type: file
     delete:
       summary: Deletes a contact
       tags:

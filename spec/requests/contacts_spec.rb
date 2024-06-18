@@ -7,14 +7,14 @@ describe 'Contacts API' do
 
     post 'Creates a contact' do
       tags 'Contacts'
-      consumes 'application/json'
+      consumes 'multipart/form-data'
       parameter name: :contact, in: :body, schema: {
         type: :object,
         properties: {
           name: { type: :string },
           email: { type: :string },
-          birthdate: { type: :string, format: 'date' } # assuming birthdate is a date string
-          # Add other properties as per your Contact model
+          birthdate: { type: :string, format: 'date' },
+          imagem: { type: :file }  # Campo de imagem
         },
         required: [ 'name', 'email' ]
       }
@@ -62,15 +62,15 @@ describe 'Contacts API' do
 
     put 'Updates a contact' do
       tags 'Contacts'
-      consumes 'application/json'
+      consumes 'multipart/form-data'
       parameter name: :id, in: :path, type: :integer
       parameter name: :contact, in: :body, schema: {
         type: :object,
         properties: {
           name: { type: :string },
           email: { type: :string },
-          birthdate: { type: :string, format: 'date' } # assuming birthdate is a date string
-          # Add other properties as per your Contact model
+          birthdate: { type: :string, format: 'date' } ,
+          imagem: { type: :file }  # Campo de imagem
         }
       }
 
