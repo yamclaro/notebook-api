@@ -5,54 +5,109 @@ info:
   version: v1
 paths:
   "/contacts":
-    get:
-      summary: list contacts
-      responses:
-        '200':
-          description: successful
     post:
-      summary: create contact
+      summary: Creates a contact
+      tags:
+      - Contacts
+      parameters: []
+      responses:
+        '201':
+          description: contact created
+        '422':
+          description: invalid request
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                email:
+                  type: string
+                birthdate:
+                  type: string
+                  format: date
+              required:
+              - name
+              - email
+    get:
+      summary: Retrieves a list of contacts
+      tags:
+      - Contacts
       responses:
         '200':
-          description: successful
+          description: list of contacts
   "/contacts/{id}":
     parameters:
     - name: id
       in: path
-      description: id
       required: true
       schema:
-        type: string
+        type: integer
     get:
-      summary: show contact
-      responses:
-        '200':
-          description: successful
-    patch:
-      summary: update contact
-      responses:
-        '200':
-          description: successful
-    put:
-      summary: update contact
-      responses:
-        '200':
-          description: successful
-    delete:
-      summary: delete contact
-      responses:
-        '200':
-          description: successful
-  "/kinds":
-    get:
-      summary: list kinds
+      summary: Retrieves a contact
       tags:
-      - Kinds
+      - Contacts
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
       responses:
         '200':
-          description: successful
+          description: contact found
+        '404':
+          description: contact not found
+    put:
+      summary: Updates a contact
+      tags:
+      - Contacts
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: contact updated
+        '422':
+          description: invalid request
+        '404':
+          description: contact not found
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                email:
+                  type: string
+                birthdate:
+                  type: string
+                  format: date
+    delete:
+      summary: Deletes a contact
+      tags:
+      - Contacts
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '204':
+          description: contact deleted
+        '404':
+          description: contact not found
+  "/kinds":
     post:
-      summary: create a kind
+      summary: Creates a kind
       tags:
       - Kinds
       parameters: []
@@ -71,39 +126,167 @@ paths:
                   type: string
               required:
               - description
+    get:
+      summary: Retrieves a list of kinds
+      tags:
+      - Kinds
+      responses:
+        '200':
+          description: list of kinds
   "/kinds/{id}":
     parameters:
     - name: id
       in: path
-      description: id
       required: true
       schema:
-        type: string
+        type: integer
     get:
-      summary: show kind
+      summary: Retrieves a kind
       tags:
       - Kinds
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
       responses:
         '200':
-          description: successful
-    patch:
-      summary: update kind
-      tags:
-      - Kinds
-      responses:
-        '200':
-          description: successful
+          description: kind found
+        '404':
+          description: kind not found
     put:
-      summary: update kind
+      summary: Updates a kind
       tags:
       - Kinds
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
       responses:
         '200':
-          description: successful
+          description: kind updated
+        '422':
+          description: invalid request
+        '404':
+          description: kind not found
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                description:
+                  type: string
     delete:
-      summary: delete kind
+      summary: Deletes a kind
       tags:
       - Kinds
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '204':
+          description: kind deleted
+        '404':
+          description: kind not found
+  "/phones":
+    post:
+      summary: Creates a phone
+      tags:
+      - Phones
+      parameters: []
+      responses:
+        '201':
+          description: phone created
+        '422':
+          description: invalid request
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                number:
+                  type: string
+                contact_id:
+                  type: integer
+              required:
+              - number
+              - contact_id
+    get:
+      summary: Retrieves a list of phones
+      tags:
+      - Phones
       responses:
         '200':
-          description: successful
+          description: list of phones
+  "/phones/{id}":
+    parameters:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: integer
+    get:
+      summary: Retrieves a phone
+      tags:
+      - Phones
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: phone found
+        '404':
+          description: phone not found
+    put:
+      summary: Updates a phone
+      tags:
+      - Phones
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: phone updated
+        '422':
+          description: invalid request
+        '404':
+          description: phone not found
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                number:
+                  type: string
+                contact_id:
+                  type: integer
+    delete:
+      summary: Deletes a phone
+      tags:
+      - Phones
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '204':
+          description: phone deleted
+        '404':
+          description: phone not found
