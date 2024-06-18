@@ -15,14 +15,4 @@ Rswag::Ui.configure do |c|
   # c.basic_auth_credentials 'username', 'password'
 
   # config/initializers/swagger.rb
-require 'swagger/blocks'
-
-Swagger::Blocks.configure_swagger do |swagger_config|
-  swagger_config.security_definition :bearer_token do
-    key :type, :apiKey
-    key :name, 'Authorization'
-    key :in, :header
-  end
-end
-
 end
